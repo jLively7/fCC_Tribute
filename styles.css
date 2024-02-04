@@ -1,0 +1,255 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+:root {
+  --nav-height: 52px;
+  --vp-height: calc(100dvh - var(--nav-height));
+
+  --white: #f1f1f1;
+  --green: #747d49;
+  --orange: #c9842f;
+  --red: #c20526;
+  --maroon: #871923;
+  --midnight: #11212a;
+
+  --ff-default: "Poppins", sans-serif;
+  --ff-title: "Bebas Neue", sans-serif;
+  --ff-subtitle: "Rubik", sans-serif;
+  --fz-default: .8rem;
+  --fz-title: 4rem;
+  --fz-subtitle: 2rem;
+}
+
+body {
+  width: 100%;
+  background-color: var(--white);
+  font-size: var(--fz-default);
+  font-family: var(--ff-default);
+}
+
+a {
+  text-decoration: none;
+  color: var(--orange);
+}
+
+h1 {
+  font-family: var(--ff-title);
+  font-size: var(--fz-title);
+  color: var(--midnight);
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--orange);
+  text-decoration-thickness: .5rem;
+  text-underline-offset: -.1rem;
+}
+
+header {
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: var(--nav-height);
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+nav ul li {
+  display: inline;
+}
+nav a {
+  display: inline-block;
+  color: var(--orange);
+  padding: 1rem;
+}
+nav span {
+  display: none;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: min(810px, 84.375vw);
+}
+#image {
+  z-index: 2;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-top: -25.5vw;
+  width: 100%;
+  clip-path: polygon(100% 26%, 100% 64%, 0% 72%, 0% 34%);
+}
+.caption {
+  z-index: 3;
+  display: block;
+  position: relative;
+  top: -33vw;
+  font-size: calc(0.5rem + 26.25vw);
+  font-family: var(--ff-title);
+  color: var(--white);
+  background-color: var(--maroon);
+  letter-spacing: -.2rem;
+  transform: skewY(10deg);
+  white-space: nowrap;
+}
+.hero-wrapper{
+  position: absolute;
+  bottom: 0;
+  width: 100px;
+  overflow: hidden;
+}
+
+.tribute-wrapper > *:not(div.hero) {
+  padding-inline: 1rem;
+  max-width: 960px;
+  margin-inline: auto;
+}
+
+.info {
+  margin-top: max(0rem, -48rem + 80vw);
+}
+
+.flex-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  row-gap: 4rem;
+  column-gap: 4rem;
+}
+.card {
+  flex: 1 1 300px;
+  font-size: .8rem;
+}
+.card h2 {
+  display: inline;
+  font-family: var(--ff-subtitle);
+  font-size: var(--fz-subtitle);
+  vertical-align: top;
+}
+.card img {
+  width: 94px;
+  float: left;
+  padding-right: 8px;
+}
+
+.info,
+.movies,
+.shows {
+  background-color: var(--white);
+  margin-bottom: 3rem;
+}
+
+#movies, #shows {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 2rem;
+}
+
+.more {
+  padding-bottom: 3rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --white: #11212a;
+    --midnight: #f1f1f1;
+    --maroon: #c20526;
+  }
+  body {
+    color: var(--midnight);
+  }
+  nav ul {
+    background-color: #000;
+  }
+}
+
+@media only screen and (min-width: 451px) {
+  nav ul {
+    justify-content: flex-start;
+  }
+  nav a {
+    padding: 1rem 1rem;
+  }
+  nav span {
+    display: inline;
+    margin-left: auto;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+@keyframes hero-2 {
+  0% {
+    clip-path: polygon(100% 26%, 100% 64%, 100% 64%, 100% 26%);
+  }
+  100% {
+    clip-path: polygon(100% 26%, 100% 64%, 0% 72%, 0% 34%);
+  }
+}
+@keyframes hero-3 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  :has(:target) {
+    scroll-behavior: smooth;
+    scroll-padding-top: 56px;
+  }
+  .tribute-wrapper > *:not(.hero) {
+    opacity: 0;
+    animation: fade-in 400ms linear 800ms forwards;
+  }
+  #image {
+    animation: hero-2 400ms linear forwards;
+  }
+  .caption {
+    width: 0;
+    animation: hero-3 400ms linear 400ms forwards;
+  }
+  nav a:hover {
+    transition: .5s;
+  }
+}
+
+@media (hover: hover) {
+  nav a:hover {
+    color: var(--midnight);
+    background-color: var(--orange);
+  }
+}
